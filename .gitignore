@@ -1,0 +1,43 @@
+# Environment & secrets
+.env
+.env.local
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Runtime artifacts
+.cache/
+logs/
+eval_output/
+outputs/
+
+# Model weights & checkpoints
+models/
+checkpoints*/
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Training artifacts
+wandb/
+rollout_logs*/
+data/
+*.parquet
+*.jsonl
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

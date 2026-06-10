@@ -1,0 +1,40 @@
+tool_parser: "v20250824"
+
+# Qwen3-8B (vLLM, GPU 2, port 30001) — search agent
+search_agent_base_url: "http://localhost:30001/v1"
+search_agent_model_name: "/root/storage/kjz/dr-tulu/models/Qwen3-8B"
+search_agent_tokenizer_name: "/root/storage/kjz/dr-tulu/models/Qwen3-8B"
+search_agent_api_key: "dummy-key"
+search_agent_max_tokens: 32000
+search_agent_temperature: 0.7
+search_agent_max_tool_calls: 10
+
+# Browse Agent (Qwen3-8B, GPU 4, port 30003 — separate from Rubric Generator)
+use_browse_agent: true
+browse_agent_base_url: "http://localhost:30003/v1"
+browse_agent_model_name: "/root/storage/kjz/dr-tulu/models/Qwen3-8B"
+browse_agent_tokenizer_name: "/root/storage/kjz/dr-tulu/models/Qwen3-8B"
+browse_agent_api_key: "dummy-key"
+browse_agent_max_tokens: 32000
+browse_agent_temperature: 0.3
+
+# Search tool configuration
+number_documents_to_search: 10
+search_timeout: 180
+
+# Browse tool configuration
+browse_tool_name: "jina"
+browse_timeout: 180
+browse_max_pages_to_fetch: 10
+browse_context_char_length: 6000
+
+# ========== Co-ReAct Rubric Generator (GRPO v3 step125, GPU 5, port 30005) ==========
+rubric_base_url: "http://localhost:30005/v1"
+rubric_model_name: "/root/storage/kjz/dr-tulu/rubric_rl/checkpoints_v3/global_step_125/actor/merged_hf"
+rubric_api_key: "dummy-key"
+rubric_temperature: 0.0
+rubric_max_tokens: 2048
+rubric_timeout: 120
+rubric_max_retries: 1
+rubric_max_think_tokens: 1500
+rubric_repetition_penalty: 1.1

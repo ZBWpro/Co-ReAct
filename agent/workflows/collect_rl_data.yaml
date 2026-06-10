@@ -1,0 +1,74 @@
+# Co-ReAct RL Data Collection Configuration
+# Inherits all search/browse config from auto_search_sft.yaml structure
+
+tool_parser: "v20250824"
+
+# Qwen3-8B (vLLM on GPU 0, port 30001)
+search_agent_base_url: "http://localhost:30001/v1"
+search_agent_model_name: "/root/storage/kjz/dr-tulu/models/Qwen3-8B"
+search_agent_tokenizer_name: "/root/storage/kjz/dr-tulu/models/Qwen3-8B"
+search_agent_api_key: "dummy-key"
+search_agent_max_tokens: 32000
+search_agent_temperature: 1.0
+search_agent_max_tool_calls: 10
+
+# Browse agent (Qwen3-8B, GPU 4, port 30003)
+use_browse_agent: true
+browse_agent_base_url: "http://localhost:30003/v1"
+browse_agent_model_name: "/root/storage/kjz/dr-tulu/models/Qwen3-8B"
+browse_agent_tokenizer_name: "/root/storage/kjz/dr-tulu/models/Qwen3-8B"
+browse_agent_api_key: "dummy-key"
+browse_agent_max_tokens: 32000
+browse_agent_temperature: 0.3
+
+# Search tool configuration
+number_documents_to_search: 10
+search_timeout: 180
+
+# Browse tool configuration
+browse_tool_name: "jina"
+browse_timeout: 180
+browse_max_pages_to_fetch: 10
+browse_context_char_length: 6000
+
+# ========== RL Data Collection Specific ==========
+
+# Force thinking for Qwen3-8B
+force_think: true
+
+# Shenma API models — no thinking mode, 5 temps × N models
+shenma_models:
+  - "qwen3-14b-kkk"
+  - "qwen3-32b-kkk"
+shenma_env: "预发"
+shenma_timeout: 120
+
+# BM25 diversity: 12 candidates (4×3 models) → dedup → top 4
+diversity_top_k: 4
+
+# Judge models (set CLOUDSWAY_API_KEY and judge URLs in .env)
+judges:
+  claude:
+    api_type: "cloudsway"
+    url_env: "CLOUDSWAY_CLAUDE_URL"
+    api_key_env: "CLOUDSWAY_API_KEY"
+    temperature: 0.7
+    timeout: 300
+
+  gemini:
+    api_type: "cloudsway"
+    url_env: "CLOUDSWAY_GEMINI_PRO_URL"
+    api_key_env: "CLOUDSWAY_API_KEY"
+    temperature: 0.7
+    timeout: 300
+
+  gpt5:
+    api_type: "cloudsway"
+    url_env: "CLOUDSWAY_GPT5_URL"
+    api_key_env: "CLOUDSWAY_API_KEY"
+    # GPT-5 does NOT support temperature parameter - must be null/omitted
+    temperature: null
+    timeout: 300
+
+# Output directory
+rl_output_dir: "/root/storage/kjz/dr-tulu/rl_data"
