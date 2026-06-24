@@ -87,3 +87,18 @@ co-react/
 │   └── train_grpo_qwen3_14b.sh   # Training script
 └── start_vllm.sh
 ```
+
+## Citation
+
+If you find our work useful in your research, please consider citing our paper:
+
+```bibtex
+@misc{kang2026co,
+  title={Co-ReAct: Rubrics as Step-Level Collaborators for ReAct Agents},
+  author={Kang, Jiazheng and Zhang, Bowen and Song, Zixin and Chen, Jiangwang and Yang, Xiao and Zhu, Da and Jiang, Guanjun},
+  year={2026},
+  eprint={2605.23590},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2605.23590},
+}
+```
